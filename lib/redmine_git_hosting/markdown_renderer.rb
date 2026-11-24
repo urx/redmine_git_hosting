@@ -26,3 +26,9 @@ module RedmineGitHosting
     end
   end
 end
+
+TaskList::Filter.class_eval do
+  def list_items
+    doc.xpath('.//li').select{ |li| li.text =~ ::TaskList::Filter::ItemPattern }
+  end
+end
